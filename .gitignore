@@ -4,3 +4,4 @@ data/*
 logs/*
 !logs/.keep
 node_modules
+*.log

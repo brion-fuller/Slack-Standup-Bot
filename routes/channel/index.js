@@ -1,7 +1,12 @@
 const routes = require('express').Router();
+const Message = require('../../app/models/message');
 
 routes.get('/', (req, res) => {
-    res.status(200).json({message: 'Channels!'});
+    var query = Message.find({});
+    var promise = query.exec();
+    promise.then((doc) => {
+        res.status(200).json({message: doc});
+    });
 });
 
 module.exports = routes;
