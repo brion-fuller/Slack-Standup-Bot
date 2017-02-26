@@ -1,0 +1,23 @@
+{
+  "name": "standup-bot",
+  "version": "0.1.0",
+  "description": "Slack standup bot to help remote agile teams stay connected",
+  "main": "server.js",
+  "dependencies": {
+    "@slack/client": "^3.8.1",
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.4",
+    "morgan": "^1.8.1"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "db": "mongod --config ./mongodb.conf",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brion Fuller II",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
