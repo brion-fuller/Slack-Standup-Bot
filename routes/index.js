@@ -1,11 +1,15 @@
-const routes = require('express').Router();
+const express = require('express');
+const router = new express.Router();
 
-const channel = require('./channel');
-
-routes.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).json({message: 'Connected!'});
 });
 
-routes.use('/channel', channel);
+// Nested Routes
+const users = require('./users');
+router.use('/users', users);
 
-module.exports = routes;
+const standups = require('./standups');
+router.use('/standups', standups);
+
+module.exports = router;

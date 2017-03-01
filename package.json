@@ -6,6 +6,8 @@
   "dependencies": {
     "@slack/client": "^3.8.1",
     "body-parser": "^1.16.1",
+    "botkit": "^0.5.1",
+    "botkit-storage-mongo": "^1.0.4",
     "express": "^4.14.1",
     "moment": "^2.17.1",
     "mongoose": "^4.8.4",
@@ -13,12 +15,14 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "windows:db": "mongod --config ./mongodb.conf --install && net start MongoDB",
+    "windows:db": "mongod --config ./mongodb.conf",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brion Fuller II",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-google": "^0.7.1",
     "nodemon": "^1.11.0"
   }
 }
