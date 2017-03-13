@@ -1,5 +1,7 @@
-const addUser = require('./addUser');
+const slackbot = require('./slackbot');
+const standup = require('./standup');
 
 module.exports = {
-    addUser,
+    slackbot,
+    standup,
 };

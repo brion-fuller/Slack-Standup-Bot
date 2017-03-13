@@ -1,13 +1,12 @@
+const Standup = require('./models/Standup');
+const Report = require('./models/Report');
 
-const Standups = require('./models/Standups');
-// const slack = require('./slack');
-
-module.exports = () => {
-    // Make a message
-    Standups.findOne({}).exec()
+module.exports = (bot) => {
+    // Make a standup
+    Standup.findOne({}).exec()
         .then((doc) => {
             if(!doc) {
-                const firstStandup = new Standups({
+                const firstStandup = new Standup({
                     'name': 'Test',
                     'creator': 'System',
                     'questions': [
@@ -21,7 +20,10 @@ module.exports = () => {
                         },
                     ],
                     'schedule': '00 30 10 * * 1-5',
-                    'channel': 'QOWIJDS',
+                    'channel': 'C2PMQURQC',
+                    'users': [
+                        'U0PQ79739',
+                    ],
                 });
                 firstStandup.save((err) => {
                     console.log(err);
@@ -31,5 +33,45 @@ module.exports = () => {
         .catch(() => {
             console.log('Error happened during seeding the database!');
     });
+    Report.findOne({}).exec()
+        .then((doc) => {
+            if(!doc) {
+                new Report({
+                    'user': 'U0PQ79739',
+                    'channel': 'C2PMQURQC',
+                }).save((err) => {
+                    console.log(err);
+                });
+            }
+        })
+        .catch(() => {
+            console.log('Error happened during seeding the database!');
+    });
+    // Update or Create User List
+    // TODO: Bulk insert (only really needed are initial startup)
+    // bot.api.users.list({}, (err, res) => {
+    //     if(err) {
+    //         console.log(err);
+    //     }else{
+    //         User.remove({}).exec().then((doc) => {
+    //             res.members.forEach((user) => {
+    //                 new User(user).save();
+    //             });
+    //         });
+    //     }
+    // });
+    // Update or Create Channel List
+    // TODO: Bulk insert (only really needed are initial startup)
+    // bot.api.channels.list({}, (err, res) => {
+    //     if(err) {
+    //         console.log(err);
+    //     }else{
+    //         Channel.remove({}).exec().then((doc) => {
+    //             res.channels.forEach((channel) => {
+    //                 new Channel(channel).save();
+    //             });
+    //         });
+    //     }
+    // });
 }
 ;

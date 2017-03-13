@@ -4,16 +4,40 @@ const moment = require('moment');
 const Schema = new mongoose.Schema({
     'type': {
         type: String,
-        required: true,
     },
+    'subtype': String,
+    'hidden': String,
     'channel': String,
     'user': String,
     'text': String,
-    'ts': {
-        type: Date,
-        set: (v) => moment.unix(v),
-    },
+    'ts': String,
+    'bot_id': String,
     'source_team': String,
+    'previous_message': {
+        'type': {type: String},
+        'user': String,
+        'text': String,
+        'ts': String,
+    },
+    'reply_message': {
+        'type': {
+            type: String,
+        },
+        'subtype': String,
+        'hidden': String,
+        'channel': String,
+        'user': String,
+        'text': String,
+        'ts': String,
+        'bot_id': String,
+        'source_team': String,
+        'previous_message': {
+            'type': {type: String},
+            'user': String,
+            'text': String,
+            'ts': String,
+        },
+    },
 });
 
 module.exports = mongoose.model('Message', Schema);

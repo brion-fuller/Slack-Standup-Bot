@@ -1,16 +1,16 @@
 const express = require('express');
 const router = new express.Router();
 
-const Standups = require('../../app/models/Standups');
+const Standup = require('../../app/models/Standup');
 
 router.get('/', (req, res) => {
-    Standups.find({'is_archived': true}).limit(10).exec().then((doc) => {
+    Standup.find({'is_archived': false}).limit(10).exec().then((doc) => {
         res.status(200).json(doc);
     });
 });
 
-router.get('/:channel', (req, res) => {
-    Standups.findOne({'channel': req.params.channel}).limit(10).exec().then((doc) => {
+router.get('/:name', (req, res) => {
+    Standup.findOne({'name': req.params.name}).exec().then((doc) => {
         if(doc) {
             res.status(200).json(doc);
         }else{
@@ -22,9 +22,10 @@ router.get('/:channel', (req, res) => {
 router.post('/', (req, res) => {
     // const newStandup = new Standups({
     // Validation
-    Standups.findOne({'name': req.body.name, 'channel': req.body.channel, 'is_archived': false}).exec()
+    Standup.findOne({'name': req.body.name, 'channel': req.body.channel, 'is_archived': false}).exec()
         .then((doc) => {
             if(doc) {
+                // TODO: Should probably unarchive channel if name is reused
                 res.status(400).json({message: 'Please make sure the channel is unique.'});
             }else{
                 const newStandup = new Standups({
@@ -44,7 +45,20 @@ router.post('/', (req, res) => {
         });
 });
 
+router.post('/:name/schedule', (req, res) => {
+    Standup.findOneAndUpdate({'name': req.params.name, 'is_archived': false}, {'schedule': req.body.schedule}, {new: true, runValidators: false}, (err, doc) => {
+        if(err) {
+            res.status(500).json(err);
+        }else{
+            res.status(200).json({message: `Schedule for ${req.params.name} was updated to ${req.body.schedule}`});
+        }
+    });
+});
+
 const questions = require('./questions');
-router.use('/:channel/questions', questions);
+router.use('/:name/questions', questions);
+
+const users = require('./users');
+router.use('/:name/users', users);
 
 module.exports = router;

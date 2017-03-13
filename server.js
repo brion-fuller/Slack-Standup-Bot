@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Botkit = require('botkit');
+const _ = require('lodash');
+const moment = require('moment');
+const slackbot = require('./app/slackbot');
 
 mongoose.Promise = global.Promise;
 
@@ -12,12 +14,10 @@ const dbString = process.env.CONN_STRING || 'mongodb://localhost:27001/standupbo
 const token = process.env.SLACK_TOKEN || '';
 
 mongoose.connect(dbString);
-// const mongoStorage = require('botkit-storage-mongo')({mongoUri: dbString});
-// const controller = Botkit.slackbot({storage: mongoStorage});
-
+mongoose.set('debug', true);
 
 mongoose.connection.once('open', () => {
-    // controller.spawn({token}).startRTM();
+    slackbot.start({token});
     require('./app/seed')();
 });
 
@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const routes = require('./routes');
+const report = require('./commands/report');
 
 app.use('/api', routes);
 
