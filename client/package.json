@@ -1,0 +1,11 @@
+{
+  "name": "standup-bot-client",
+  "version": "0.1.0",
+  "description": "Portal for the standup bot application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brion Fuller",
+  "license": "MIT"
+}
