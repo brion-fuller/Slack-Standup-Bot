@@ -7,3 +7,4 @@ module.exports = (bot, msg) => {
             standupbot.replyWithTyping(msg, 'Unexpected error please contact an admin.');
         });
 }
+;
