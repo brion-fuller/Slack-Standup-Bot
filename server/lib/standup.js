@@ -118,7 +118,7 @@ function _runStandup(standup, report, msg, user) {
         convo.say(`Good job! :tada:`);
         convo.on('end', (convo) => {
             const message = {
-                text: `*${user['real_name']}* standup notes for *${moment(standup.createdAt).format('DD MMM YYYY')}*.`,
+                text: `*${user['real_name']}* standup notes for *${moment(report.createdAt).format('DD MMM YYYY')}*.`,
                 attachments: _.map(report.answers, _answerToSlackAttachment),
             };
             slackbot.reply({channel: standup.channel}, message, (err, reply) => {
