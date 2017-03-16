@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const cssnext = require('postcss-cssnext');
 
 const src = resolve(__dirname, './src');
 const dist = resolve(__dirname, './dist');
@@ -44,6 +45,17 @@ module.exports = {
               modules: true,
               localIdentName: '[path][name]---[local]---[hash:base64:5]',
               sourceMap: true,
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins() {
+                return [
+                  cssnext,
+                ];
+              },
             },
           },
         ],
