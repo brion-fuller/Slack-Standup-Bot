@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 
-const Standup = require('../../app/models/Standup');
+const Standup = require('../../models/Standup');
 
 router.get('/', (req, res) => {
     Standup.find({'is_archived': false}).limit(10).exec().then((doc) => {

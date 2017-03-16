@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = new mongoose.Schema({
     'user': String,
     'channel': String,
+    'standup': String,
     'answers': [{
         question: String,
         color: String,

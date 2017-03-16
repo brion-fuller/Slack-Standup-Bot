@@ -1,17 +1,17 @@
 const routes = require('express').Router();
-const Message = require('../../app/models/Message');
+const Message = require('../../models/Message');
 
 routes.get('/', (req, res) => {
-    var query = Message.find({});
-    var promise = query.exec();
+    let query = Message.find({});
+    let promise = query.exec();
     promise.then((doc) => {
         res.status(200).json({message: doc});
     });
 });
 
 routes.get('/:channelName', (req, res) => {
-    var query = Message.findOne({});
-    var promise = query.exec();
+    let query = Message.findOne({});
+    let promise = query.exec();
     promise.then((doc) => {
         res.status(200).json({message: doc});
     });

@@ -1,5 +1,5 @@
-const Standup = require('./models/Standup');
-const Report = require('./models/Report');
+const Standup = require('./Standup');
+const Report = require('./Report');
 
 module.exports = (bot) => {
     // Make a standup

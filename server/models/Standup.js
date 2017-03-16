@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
-const CronJob = require('node-cron').CronJob;
+const CronJob = require('cron').CronJob;
 const Schema = new mongoose.Schema({
     'name': {
         type: String,
+        required: true,
+        unique: true,
+    },
+    'code': {
+        type: String,
+        unique: true,
         required: true,
     },
     'creator': {
@@ -36,6 +42,10 @@ const Schema = new mongoose.Schema({
 
 
 module.exports = mongoose.model('Standup', Schema);
+
+Schema.pre('save', function(next) {
+    this.code = this.name.toLowerCase().replace(/ /g, '_');
+});
 
 function isCronFormat(v) {
     try{
