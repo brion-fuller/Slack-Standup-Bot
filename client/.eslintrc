@@ -1,0 +1,19 @@
+{
+    "root": true,
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true,
+        "mocha": true
+    },
+    "ecmaFeatures": {
+        "modules": true,
+        "jsx": true
+    },
+    "extends": "airbnb",
+    "rules": {
+        "no-use-before-define": [1, {"functions": false}],
+        "import/no-extraneous-dependencies": [1],
+        "react/prop-types" : [1]
+    }    
+}

@@ -7,6 +7,8 @@ let slackbot = {
     hears: controller.hears,
     createConversation: controller.createConversation,
     startConversation: controller.startConversation,
+    startPrivateConversation: () => {},
+    reply: () => {},
     start,
     users: [],
     bot: {},
@@ -22,6 +24,8 @@ function start({token}) {
             }else{
                 slackbot.users = data.users;
                 slackbot.bot = bot;
+                slackbot.reply = bot.replyWithTyping;
+                slackbot.startPrivateConversation = bot.startPrivateConversation;
                 resolve(slackbot);
             }
         });

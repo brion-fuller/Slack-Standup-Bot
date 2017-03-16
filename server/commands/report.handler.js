@@ -1,10 +1,10 @@
-const startStandup = require('../lib/startUserStandup');
+const standup = require('../lib/standup');
+const slackbot = require('../slackbot');
 
 module.exports = (bot, msg) => {
-    startStandup(msg.user)
+    standup.start({userid: msg.user})
         .catch((err) => {
             console.error(err);
-            standupbot.replyWithTyping(msg, 'Unexpected error please contact an admin.');
+            slackbot.reply(msg, 'Unexpected error please contact an admin.');
         });
-}
-;
+};

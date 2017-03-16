@@ -26,7 +26,7 @@ function startUserStandup({code, userid, user}) {
     }
     const date = moment().tz(user.tz);
 
-    const standup = _findStandup({code, userid: user.id});
+    const standup = _findStandup({userid: user.id});
     const report = _findReport({date, code, userid: user.id});
     const directMsgChannel = _getDirectMessageChannel(userid);
 
@@ -53,7 +53,6 @@ function scheduleUserStandup({code, user}) {
 
 function _findStandup({code, userid}) {
     return Standup.findOne({
-        code,
         users: userid,
         is_archived: false,
     }).exec();
@@ -122,7 +121,7 @@ function _runStandup(standup, report, msg, user) {
                 text: `*${user['real_name']}* standup notes for *${moment(standup.createdAt).format('DD MMM YYYY')}*.`,
                 attachments: _.map(report.answers, _answerToSlackAttachment),
             };
-            slackbot.replyWithTyping({channel: standup.channel}, message, (err, reply) => {
+            slackbot.reply({channel: standup.channel}, message, (err, reply) => {
                 report.reply_message = _.extend(reply, reply.message);
             });
             report.save();
