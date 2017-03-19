@@ -9,6 +9,7 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.16.1",
     "botkit": "^0.5.1",
+    "cors": "^2.8.1",
     "cron": "^1.2.1",
     "express": "^4.14.1",
     "lodash": "^4.17.4",
@@ -16,10 +17,11 @@
     "moment-timezone": "^0.5.11",
     "mongodb": "^2.2.24",
     "mongoose": "^4.8.4",
+    "passport": "^0.3.2",
     "winston": "^2.3.1"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "nodemon index.js",
     "windows:db": "mongod --config ./mongodb.conf",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,0 +1,29 @@
+:root{
+  --passive-border-color: #DDDDDD;
+  --active-border-color: #4284ae;
+  --transition-time: 0.30s;
+}
+
+.noArrows::-webkit-outer-spin-button, .noArrows::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.label{
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.input{
+  transition: all var(--transition-time) ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid var(--passive-border-color);
+  /*border-radius: 5px;*/
+  box-sizing: border-box;
+}
+.input:focus{
+  border: 1px solid var(--active-border-color);
+  box-shadow: 0px 0px 2px var(--active-border-color);
+}

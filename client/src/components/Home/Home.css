@@ -1,0 +1,20 @@
+.container{
+    margin: 0 auto;
+    max-width: 950px;
+    border: 1px solid lightgray;
+    height: 100%;
+    box-sizing: border-box;
+}
+.header{
+    text-align: center;
+}
+.card{
+    width: 31%;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 1%;
+    padding: 15px;
+}

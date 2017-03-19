@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const cors = require('cors');
 const slackbot = require('./slackbot');
 const standup = require('./lib/standup');
 const commands = require('./commands');
@@ -28,8 +30,12 @@ mongoose.connection.once('open', () => {
     require('./models/seed')();
 });
 
+app.use(cors());
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
 
 const routes = require('./routes');
 

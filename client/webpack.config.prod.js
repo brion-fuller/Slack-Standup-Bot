@@ -64,7 +64,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Redux-React-Calculator',
+      title: 'Slack Standup Bot',
       template: resolve(src, 'index.html'),
     }),
     new HtmlWebpackExternalsPlugin([

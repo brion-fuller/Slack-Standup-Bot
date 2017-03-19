@@ -7,6 +7,7 @@ const cssnext = require('postcss-cssnext');
 
 const src = resolve(__dirname, './src');
 const dist = resolve(__dirname, './dist');
+const nodeModules = resolve(__dirname, './node_modules');
 
 module.exports = {
   entry: {
@@ -23,9 +24,12 @@ module.exports = {
     publicPath: '/',
   },
   context: src,
-  devtool: 'sourcemap',
+  devtool: 'sourcemaps',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      widgets: resolve(src, 'widgets'),
+    },
   },
   module: {
     rules: [
@@ -44,6 +48,32 @@ module.exports = {
             query: {
               modules: true,
               localIdentName: '[path][name]---[local]---[hash:base64:5]',
+              sourceMap: true,
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins() {
+                return [
+                  cssnext,
+                ];
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        include: [nodeModules],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              localIdentName: '[local]',
               sourceMap: true,
               importLoaders: 1,
             },
@@ -91,7 +121,7 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Redux-React-Calculator',
+      title: '[DEV] Slack Standup Bot',
       template: resolve(src, 'index.html'),
     }),
     new webpack.HotModuleReplacementPlugin(),

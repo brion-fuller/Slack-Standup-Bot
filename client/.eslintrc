@@ -14,6 +14,7 @@
     "rules": {
         "no-use-before-define": [1, {"functions": false}],
         "import/no-extraneous-dependencies": [1],
-        "react/prop-types" : [1]
+        "react/prop-types" : [1],
+        "max-len": [0]
     }    
 }
