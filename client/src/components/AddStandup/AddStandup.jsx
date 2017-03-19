@@ -7,18 +7,10 @@ import style from './AddStandup.css';
 const AddStandup = ({ addStandup }) => (
   <form className={style.container}>
     <h1>Add Standup</h1>
-    <ul>
-      <li>
-        <label htmlFor="name">Name</label>
-        <input id="name" type="text" />
-      </li>
-      <li>
-        <label htmlFor="channel">Channel</label>
-        <input id="channel" type="text" />
-      </li>
-      <DayInput label={'Sunday'} id={'day'} />
-      <TextInput label={'Time'} id={'time'} />
-    </ul>
+    <TextInput label={'Name'} id={'name'} />
+    <TextInput label={'Channel'} id={'channel'} />
+    <DayInput label={'Sunday'} id={'day'} days={['sunday', 'wednesday']} />
+    <TextInput label={'Time'} id={'time'} />
     <button onClick={addStandup}>Save</button>
   </form>
 );
