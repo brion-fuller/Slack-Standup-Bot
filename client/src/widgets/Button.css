@@ -7,19 +7,14 @@
   --transition-time: 0.30s;
 }
 
-.day{
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-.title{
-  margin: 5px 0;
-}
-.dayContainer{
-  display: inline-flex;
-  flex-wrap: wrap;
+.button{
   border: 2px solid var(--passive-border-color);
-  transition: color,border-color 300ms cubic-bezier(.4,.0,.23,1);
+  background-color: transparent;
+  color: var(--passive-border-color);
+  font-size: 1em;
+  margin: 5px 10px;
 }
-.dayContainer:hover{
+.button:hover, .button:focus{
+  color: var(--hover-border-color);
   border-color: var(--hover-border-color);
 }

@@ -39,7 +39,7 @@ export default class DayInput extends React.Component {
     if (index < 0 && selected) {
       days.push(day);
     }
-    this.props.onChange(days);
+    this.props.onChange(this.props.name || this.props.id, days);
   }
   render() {
     return (

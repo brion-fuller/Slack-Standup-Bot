@@ -1,18 +1,35 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextInput, DayInput } from 'widgets';
+import { connect } from 'react-redux';
+import { TextInput, DayInput, Button } from 'widgets';
+import { FORM_UPDATE, FORM_RESET, FORM_SUBMIT } from 'constants';
 
 import style from './AddStandup.css';
 
-const AddStandup = ({ addStandup }) => (
-  <form className={style.container}>
+const AddStandup = ({ values, update, reset, submit }) => (
+  <form className={style.container} onSubmit={data => console.log(data)}>
     <h1>Add Standup</h1>
-    <TextInput label={'Name'} id={'name'} />
-    <TextInput label={'Channel'} id={'channel'} />
-    <DayInput label={'Sunday'} id={'day'} days={['sunday', 'wednesday']} />
-    <TextInput label={'Time'} id={'time'} />
-    <button onClick={addStandup}>Save</button>
+    <TextInput label={'Name'} id={'name'} onChange={update} value={values.name} />
+    <TextInput label={'Channel'} id={'channel'} onChange={update} value={values.channel} />
+    <DayInput label={'Sunday'} id={'days'} days={values.days} onChange={update} />
+    <TextInput label={'Time'} id={'time'} onChange={update} value={values.time} />
+    <Button onClick={submit}>Save</Button>
+    <Button onClick={reset}>Cancel</Button>
   </form>
 );
 
-export default AddStandup;
+export default connect(
+  ({ standups }) => ({ values: standups.new }),
+  {
+    update: (name, value) => ({
+      type: FORM_UPDATE,
+      name,
+      value,
+    }),
+    reset: () => ({
+      type: FORM_RESET,
+    }),
+    submit: () => ({
+      type: FORM_SUBMIT,
+    }),
+  },
+)(AddStandup);

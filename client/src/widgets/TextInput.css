@@ -18,7 +18,7 @@
 }
 
 .input{
-  transition: all var(--transition-time) ease-in-out;
+  transition: color,border-color var(--transition-time) ease-in-out;
   outline: none;
   padding: 3px 0px 3px 3px;
   border: var(--border-thickness) solid var(--passive-border-color);

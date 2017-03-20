@@ -1,15 +1,19 @@
+import { FORM_UPDATE, FORM_RESET, FORM_SUBMIT } from 'constants';
 export const ADD_STANDUP = 'add-standup';
 
-const INITIAL_STATE = {
+const initialState = {
+  new: {},
   list: [],
-  error: null,
-  loading: false,
 };
 
-export default function (state = INITIAL_STATE, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
-    case ADD_STANDUP:
-      return { ...state, list: [...state.list, action.payload] };
+    case FORM_UPDATE:
+      return { ...state, new: { ...state.new, [action.name]: action.value } };
+    case FORM_RESET:
+      return { ...state, new: {} };
+    case FORM_SUBMIT:
+      return { ...state, list: [...state.list, state.new], new: {} };
     default:
       return state;
   }
