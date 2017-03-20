@@ -29,6 +29,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       widgets: resolve(src, 'widgets'),
+      constants: resolve(src, 'constants'),
     },
   },
   module: {

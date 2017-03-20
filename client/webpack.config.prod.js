@@ -23,6 +23,10 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      widgets: resolve(src, 'widgets'),
+      constants: resolve(src, 'constants'),
+    },
   },
   module: {
     rules: [
@@ -72,6 +76,9 @@ module.exports = {
       { name: 'react-dom', var: 'ReactDOM', url: 'https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.min.js' },
       { name: 'redux', var: 'Redux', url: 'https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js' },
       { name: 'react-redux', var: 'ReactRedux', url: 'https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.1/react-redux.min.js' },
+      { name: 'react-router', var: 'ReactRouter', url: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/3.0.2/react-router.min.js' },
+      { name: 'classnames', var: 'classnames', url: 'https://cdnjs.cloudflare.com/ajax/libs/classnames/2.2.5/index.min.js' },
+      { name: 'lodash', var: 'lodash', url: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js' },
     ]),
   ],
 };
