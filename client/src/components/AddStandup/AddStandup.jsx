@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { TextInput, DayInput, Button } from 'widgets';
 import { FORM_UPDATE, FORM_RESET, FORM_SUBMIT } from 'constants';
+import Questions from './Questions/Questions';
 
 import style from './AddStandup.css';
 

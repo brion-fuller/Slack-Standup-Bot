@@ -6,6 +6,7 @@
   --border-thickness: 2px;
   --transition-time: 0.30s;
 }
+@custom-media --med-viewport (min-width: 768px);
 
 .day{
   padding: 0 10px;
@@ -15,11 +16,25 @@
   margin: 5px 0;
 }
 .dayContainer{
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: inline-block;
+  box-sizing: border-box;
   border: 2px solid var(--passive-border-color);
   transition: color,border-color 300ms cubic-bezier(.4,.0,.23,1);
 }
 .dayContainer:hover{
   border-color: var(--hover-border-color);
+}
+.item{
+  width: 100%;
+}
+.item.width33{
+  width: 50%;
+}
+@media(--med-viewport){
+  .item.width33{
+    width: 33%;
+  }
+  .item.width50{
+    width: 50%;
+  }
 }
